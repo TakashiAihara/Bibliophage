@@ -1,19 +1,16 @@
 {
-  "background": {
-    "persistent": false,
-    "scripts": [
-      "dist/background.js"
-    ]
-  },
-  "browser_action": {
+  "action": {
     "default_icon": {
       "64": "assets/icon_64.png",
       "128": "assets/icon_128.png"
     },
-    "default_title": "Add Tabs to Reading List"
+    "default_title": "Chrome Reading Lister"
   },
-  "manifest_version": 2,
-  "name": "Add Tabs to Reading List",
+  "background": {
+    "service_worker": "dist/background.js"
+  },
+  "manifest_version": 3,
+  "name": "Chrome Reading Lister",
   "permissions": [
     "tabs",
     "bookmarks"
