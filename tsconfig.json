@@ -5,7 +5,9 @@
     "outDir": "dist",
     "strict": true,
     "esModuleInterop": true,
-    "sourceMap": false
+    "sourceMap": false,
+    "typeRoots": ["./node_modules/@types", "./types"],
+    "types": ["chrome", "chrome.readingList"]
   },
   "include": ["src"]
 }

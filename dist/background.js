@@ -2,22 +2,16 @@
 console.log("CRL Loaded");
 chrome.action.onClicked.addListener(() => {
     console.log("CRL Clicked ");
-    chrome.bookmarks.search({ 'title': 'Reading list' }, (results) => {
-        console.log(results);
-        if (results.length > 0) {
-            const readingListId = results[0].id;
-            chrome.tabs.query({ currentWindow: true }, (tabs) => {
-                tabs.forEach((tab) => {
-                    chrome.bookmarks.create({
-                        'parentId': readingListId,
-                        'title': tab.title,
-                        'url': tab.url
-                    });
-                });
-            });
-        }
-        else {
-            console.log('Reading List not found.');
-        }
+    chrome.tabs.query({ currentWindow: true }, (tabs) => {
+        tabs.forEach((tab) => {
+            var _a, _b;
+            const entryObj = {
+                title: (_a = tab.title) !== null && _a !== void 0 ? _a : 'title not found',
+                url: (_b = tab.url) !== null && _b !== void 0 ? _b : "url not found.",
+                hasBeenRead: false
+            };
+            console.log(entryObj);
+            chrome.readingList.addEntry(entryObj);
+        });
     });
 });

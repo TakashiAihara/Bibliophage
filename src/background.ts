@@ -3,23 +3,16 @@ console.log("CRL Loaded")
 chrome.action.onClicked.addListener(() => {
   console.log("CRL Clicked ")
 
-  chrome.bookmarks.search({ 'title': 'Reading list' }, (results) => {
-    console.log(results)
+  chrome.tabs.query({ currentWindow: true }, (tabs) => {
+    tabs.forEach((tab) => {
+      const entryObj = {
+        title: tab.title ?? 'title not found',
+        url: tab.url ?? "url not found.",
+        hasBeenRead: false
+      }
 
-    if (results.length > 0) {
-      const readingListId = results[0].id;
-
-      chrome.tabs.query({ currentWindow: true }, (tabs) => {
-        tabs.forEach((tab) => {
-          chrome.bookmarks.create({
-            'parentId': readingListId,
-            'title': tab.title,
-            'url': tab.url
-          });
-        });
-      });
-    } else {
-      console.log('Reading List not found.');
-    }
+      console.log(entryObj)
+      chrome.readingList.addEntry(entryObj)
+    });
   });
 });
