@@ -1,5 +1,7 @@
 "use strict";
+console.log("CRL Loaded");
 chrome.action.onClicked.addListener(() => {
+    console.log("CRL Clicked ");
     chrome.bookmarks.search({ 'title': 'Reading list' }, (results) => {
         console.log(results);
         if (results.length > 0) {
