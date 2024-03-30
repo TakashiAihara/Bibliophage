@@ -1,4 +1,4 @@
-chrome.browserAction.onClicked.addListener(() => {
+chrome.action.onClicked.addListener(() => {
   chrome.bookmarks.search({ 'title': 'Reading list' }, (results) => {
     console.log(results)
 
