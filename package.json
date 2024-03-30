@@ -1,0 +1,12 @@
+{
+  "name": "chrome-reading-lister",
+  "version": "1.0.0",
+  "description": "Chrome Extension to add all open tabs to Reading List",
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.263",
+    "typescript": "^5.4.3"
+  }
+}
