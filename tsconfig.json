@@ -6,8 +6,7 @@
     "strict": true,
     "esModuleInterop": true,
     "sourceMap": false,
-    "typeRoots": ["./node_modules/@types", "./types"],
-    "types": ["chrome", "chrome.readingList"]
+    "types": ["chrome-types"]
   },
   "include": ["src"]
 }
