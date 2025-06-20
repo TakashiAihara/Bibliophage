@@ -4,13 +4,13 @@
       "64": "assets/icon_64.png",
       "128": "assets/icon_128.png"
     },
-    "default_title": "Chrome Reading Lister"
+    "default_title": "bibliophage"
   },
   "background": {
     "service_worker": "dist/background.js"
   },
   "manifest_version": 3,
-  "name": "Chrome Reading Lister",
+  "name": "bibliophage",
   "permissions": [
     "tabs",
     "readingList"
