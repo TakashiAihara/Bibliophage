@@ -20,6 +20,11 @@ chrome.contextMenus.create({
     title: "save this page into reading list",
     contexts: ["page"]
 });
+chrome.contextMenus.create({
+    id: "save-link-to-reading-list",
+    title: "save this link into reading list",
+    contexts: ["link"]
+});
 chrome.contextMenus.onClicked.addListener((info, tab) => {
     var _a, _b;
     if (info.menuItemId === "save-to-reading-list" && tab) {
@@ -29,6 +34,15 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
             hasBeenRead: false
         };
         console.log("Adding to reading list:", entryObj);
+        chrome.readingList.addEntry(entryObj);
+    }
+    else if (info.menuItemId === "save-link-to-reading-list" && info.linkUrl) {
+        const entryObj = {
+            title: info.selectionText || info.linkUrl,
+            url: info.linkUrl,
+            hasBeenRead: false
+        };
+        console.log("Adding link to reading list:", entryObj);
         chrome.readingList.addEntry(entryObj);
     }
 });
