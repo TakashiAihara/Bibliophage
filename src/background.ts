@@ -16,3 +16,22 @@ chrome.action.onClicked.addListener(() => {
     });
   });
 });
+
+chrome.contextMenus.create({
+  id: "save-to-reading-list",
+  title: "save this page into reading list",
+  contexts: ["page"]
+});
+
+chrome.contextMenus.onClicked.addListener((info, tab) => {
+  if (info.menuItemId === "save-to-reading-list" && tab) {
+    const entryObj = {
+      title: tab.title ?? 'title not found',
+      url: tab.url ?? "url not found.",
+      hasBeenRead: false
+    }
+
+    console.log("Adding to reading list:", entryObj)
+    chrome.readingList.addEntry(entryObj)
+  }
+});
