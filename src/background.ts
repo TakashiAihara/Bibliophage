@@ -1,5 +1,17 @@
 console.log("CRL Loaded")
 
+async function fetchPageTitle(url: string): Promise<string> {
+  try {
+    const response = await fetch(url);
+    const html = await response.text();
+    const titleMatch = html.match(/<title[^>]*>([^<]+)<\/title>/i);
+    return titleMatch ? titleMatch[1].trim() : url;
+  } catch (error) {
+    console.error("Failed to fetch page title:", error);
+    return url;
+  }
+}
+
 chrome.action.onClicked.addListener(() => {
   console.log("CRL Clicked ")
 
@@ -29,7 +41,7 @@ chrome.contextMenus.create({
   contexts: ["link"]
 });
 
-chrome.contextMenus.onClicked.addListener((info, tab) => {
+chrome.contextMenus.onClicked.addListener(async (info, tab) => {
   if (info.menuItemId === "save-to-reading-list" && tab) {
     const entryObj = {
       title: tab.title ?? 'title not found',
@@ -40,8 +52,9 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
     console.log("Adding to reading list:", entryObj)
     chrome.readingList.addEntry(entryObj)
   } else if (info.menuItemId === "save-link-to-reading-list" && info.linkUrl) {
+    const title = await fetchPageTitle(info.linkUrl);
     const entryObj = {
-      title: info.selectionText || info.linkUrl,
+      title: title,
       url: info.linkUrl,
       hasBeenRead: false
     }
