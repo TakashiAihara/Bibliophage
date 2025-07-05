@@ -76,15 +76,6 @@
         "mcp/aws-terraform"
       ]
     },
-    "redis": {
-      "command": "docker",
-      "args": [
-        "run",
-        "-i",
-        "--rm",
-        "mcp/redis"
-      ]
-    },
     "notion": {
       "command": "docker",
       "args": [
@@ -103,15 +94,6 @@
         "mcp/obsidian"
       ]
     },
-    "line": {
-      "command": "docker",
-      "args": [
-        "run",
-        "-i",
-        "--rm",
-        "mcp/line"
-      ]
-    },
     "desktop-commander": {
       "command": "docker",
       "args": [
@@ -119,15 +101,6 @@
         "-i",
         "--rm",
         "mcp/desktop-commander"
-      ]
-    },
-    "grafana": {
-      "command": "docker",
-      "args": [
-        "run",
-        "-i",
-        "--rm",
-        "mcp/grafana"
       ]
     }
   }
